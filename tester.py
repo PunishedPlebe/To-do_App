@@ -51,16 +51,14 @@ def tester():
     to_do1 = To_Do_List() # initializes a To_Do_List Object
     print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
 
-    print("TEST 1")
-    #Test 1 Standard Test input
+    #Standard Test input
     task8 = Task(1,"this is a test task8", "01/11/1998")
     task9 = Task(2,"this is a test task9", "01/11/1997")
     task10 = Task(3,"this is a test task10", "01/11/1996")
-    print("END")
 
 
-    print("TEST 2")
-    #Test 2 Standard Adds Tasks test
+    print("TEST 1")
+    #Test 1 Standard Adds Tasks test
     to_do1.add_task(task8)
     to_do1.add_task(task9)
     to_do1.add_task(task10)
@@ -72,8 +70,8 @@ def tester():
 
     print("END")
 
-    print("TEST 3")
-    # Test 3 Standard Remove Tasks Test
+    print("TEST 2")
+    # Test 2 Standard Remove Tasks Test
     to_do1.del_task(task8)
     to_do1.del_task(task10)
 
@@ -88,8 +86,8 @@ def tester():
     to_do1.add_task(task8)
     to_do1.add_task(task10)
 
-    print("TEST 4")
-    #Test 4 Standard Completion of Task test
+    print("TEST 3")
+    #Test 3 Standard Completion of Task test
     print("completed task8")
     to_do1.mark_as_comp(task8)
     print("completed task9")
@@ -111,8 +109,45 @@ def tester():
 
     print("END")
 
+    print("TEST 4") #Non task input test add method
+    try:
+        to_do1.add_task(456)
+    except Exception as e:
+        print(e)
 
+    print("END")
 
+    print("TEST 5") #Non task input test del method
+    try:
+        to_do1.del_task(456)
+    except Exception as e:
+        print(e)
+
+    print("END")
+
+    print("TEST 6") #Non task input test del method
+    try:
+        to_do1.mark_as_comp(456)
+    except Exception as e:
+        print(e)
+
+    print("END")
+
+    print("TEST 7") # test del method - can i delete stuff that isn't there?
+    try:
+        to_do1.del_task(task1)
+    except Exception as e:
+        print(e)
+
+    print("END")
+
+    print("TEST 8") # test mark_as_comp method - can i modify stuff that isn't there?
+    try:
+        to_do1.del_task(task1)
+    except Exception as e:
+        print(e)
+
+    print("END")
 
 
 
