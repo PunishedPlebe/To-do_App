@@ -28,14 +28,17 @@ class To_Do_List():
     def view_task_list(self): # returns all the lists and their current values
         return self.task_list, self.completed, self.all_tasks
 
-    #this function also needs to update the all_tasks list item
     def mark_as_comp(self, task): # Changes the status flag of task object and moves it to a list of finished tasks
         if isinstance(task, Task) == False: # checking to make sure input is correct type
             raise Exception("You can only delete Tasks from the to-do list") # throwing an error if it isn't
         for item in self.task_list: # loop thorugh each task in active tasklist
             if item.task_id == task.task_id: #if id's match between input and current task in loop
                 item.completion_status = True # we update that tasks flag
-                self.completed.append(self.task_list.pop(item)) # we add it to the finished tasklist by poping it off the active tasklist
+                self.completed.append(self.task_list.pop(self.task_list.index(item))) # we add it to the finished tasklist by poping it off the active tasklist
                 break # we break out of loop cause we changed what we need to change
         else: # for-else loop (phyton only) normally you'd create a found variable like a bool and check its status after the break with an if statement
             raise Exception("The task you are looking for is no longer/never was in the task list") # throw an error if we can't find it
+        for item in self.all_tasks: # loop through all the task objects in all_tasks list
+            if item.task_id == task.task_id: # compare ids for a matach
+                item.completion_status = True # if they match change the completion_status flag of item
+                break # found what we were looking for so we break out of the loop

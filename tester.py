@@ -49,31 +49,68 @@ def tester():
     print("-------------TESTING To_Do_List Class------------------")
 
     to_do1 = To_Do_List() # initializes a To_Do_List Object
-    print(to_do1.task_list, to_do1.completed, to_do1.all_tasks) # Prints the contents of all it's attributes
+    print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
 
+    print("TEST 1")
     #Test 1 Standard Test input
-    task8 = Task(1,"this is a test task1", "01/11/1998")
-    task9 = Task(2,"this is a test task2", "01/11/1997")
-    task10 = Task(3,"this is a test task3", "01/11/1996")
+    task8 = Task(1,"this is a test task8", "01/11/1998")
+    task9 = Task(2,"this is a test task9", "01/11/1997")
+    task10 = Task(3,"this is a test task10", "01/11/1996")
+    print("END")
 
+
+    print("TEST 2")
     #Test 2 Standard Adds Tasks test
     to_do1.add_task(task8)
     to_do1.add_task(task9)
     to_do1.add_task(task10)
 
+    print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
+
     for item in to_do1.task_list: #Prints descriptions of each task object in to_do1 task_list attribute
         print(item.description)
 
-    # Test 2 Standard Remove Tasks Test
+    print("END")
+
+    print("TEST 3")
+    # Test 3 Standard Remove Tasks Test
     to_do1.del_task(task8)
     to_do1.del_task(task10)
 
+    print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
+
     for item in to_do1.task_list: #Prints descriptions of each task object in to_do1 task_list attribute
         print(item.description)
+
+    print("END")
 
     # Repopluates to_do1 for further testing
     to_do1.add_task(task8)
     to_do1.add_task(task10)
+
+    print("TEST 4")
+    #Test 4 Standard Completion of Task test
+    print("completed task8")
+    to_do1.mark_as_comp(task8)
+    print("completed task9")
+    to_do1.mark_as_comp(task9)
+
+    print("Printing the Contents of the task_list array")
+    for item in to_do1.task_list: #Prints descriptions of each task object in to_do1 task_list attribute
+        print(item.description)
+    print("Printing the Contents of the completed array and completion status")
+    for item in to_do1.completed: #Prints descriptions of each task object in to_do1 task_list attribute
+        print(item.description)
+        print(item.completion_status)
+    print("Printing the Contents of the all_tasks array and completion status")
+    for item in to_do1.all_tasks: #Prints descriptions of each task object in to_do1 task_list attribute
+        print(item.description)
+        print(item.completion_status)
+
+    print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
+
+    print("END")
+
 
 
 
