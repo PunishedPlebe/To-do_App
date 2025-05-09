@@ -104,7 +104,6 @@ def tester():
     for item in to_do1.all_tasks: #Prints descriptions of each task object in to_do1 task_list attribute
         print(item.description)
         print(item.completion_status)
-
     print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
 
     print("END")
