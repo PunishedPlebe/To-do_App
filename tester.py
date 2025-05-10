@@ -56,6 +56,8 @@ def tester():
     task9 = Task(2,"this is a test task9", "01/11/1997")
     task10 = Task(3,"this is a test task10", "01/11/1996")
     task11 = Task(4,"this is a test task11","02/01/1000",True)
+    task12 = Task(5,"this is a test task12","03/11/2000", True)
+    task13 = Task(6, "this is a test task13", "02/16/2017")
 
 
     print("TEST 1")
@@ -64,6 +66,7 @@ def tester():
     to_do1.add_task(task9)
     to_do1.add_task(task10)
     to_do1.add_task(task11)
+    to_do1.add_task(task12)
 
 
     print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
@@ -77,7 +80,7 @@ def tester():
     # Test 2 Standard Remove Tasks Test
     to_do1.del_task(task8)
     to_do1.del_task(task10)
-    #to_do1.del_task(task11)
+    to_do1.del_task(task11)
 
     print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
 
@@ -89,6 +92,7 @@ def tester():
     # Repopluates to_do1 for further testing
     to_do1.add_task(task8)
     to_do1.add_task(task10)
+    to_do1.add_task(task11)
 
     print("TEST 3")
     #Test 3 Standard Completion of Task test
@@ -96,6 +100,8 @@ def tester():
     to_do1.mark_as_comp(task8)
     print("completed task9")
     to_do1.mark_as_comp(task9)
+
+    print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
 
     print("Printing the Contents of the task_list array")
     for item in to_do1.task_list: #Prints descriptions of each task object in to_do1 task_list attribute
@@ -138,7 +144,7 @@ def tester():
 
     print("TEST 7") # test del method - can i delete stuff that isn't there?
     try:
-        to_do1.del_task(task1)
+        to_do1.del_task(task13)
     except Exception as e:
         print(e)
 
@@ -146,7 +152,7 @@ def tester():
 
     print("TEST 8") # test mark_as_comp method - can i modify stuff that isn't there?
     try:
-        to_do1.del_task(task1)
+        to_do1.mark_as_comp(task1)
     except Exception as e:
         print(e)
 

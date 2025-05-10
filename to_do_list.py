@@ -20,16 +20,28 @@ class To_Do_List():
 
     # need to add way to check both the tas_list and the completed list to make it's removed from all lists
     def del_task(self, task): # removes task object from active tasklist
+        found = False
         if isinstance(task, Task) == False: # checks to make sure input is correct type
             raise Exception("You can only delete Tasks from the to-do list") #Throws error
         else:
-            for item in self.task_list:  # loops through all tasks in active tasklist
+            for item in self.all_tasks[:]:  # loops through all tasks in active tasklist
                 if item.task_id == task.task_id: # checks to see if current task object iteration's id value is equal to the passed task object's id value
-                    self.task_list.remove(task) # removes task from active tasklist
-                    self.all_tasks.remove(task)
+                    self.all_tasks.remove(item)
+                    found = True
                     break #breaks out of loop cause we found what we were looking for
-            else:# for-else loop (phyton only) normally you'd create a found variable like a bool and check its status after the break with an if statement
-                raise Exception("The task you are looking for is no longer/never was in the task list") # if we can't find it we throw an error to let the user know
+            for item in self.task_list[:]:  # loops through all tasks in active tasklist
+                if item.task_id == task.task_id: # checks to see if current task object iteration's id value is equal to the passed task object's id value
+                    self.task_list.remove(item)
+                    found = True
+                    break #breaks out of loop cause we found what we were looking for
+            for item in self.completed[:]:  # loops through all tasks in active tasklist
+                if item.task_id == task.task_id: # checks to see if current task object iteration's id value is equal to the passed task object's id value
+                    self.completed.remove(item)
+                    found = True
+                    break #breaks out of loop cause we found what we were looking for
+        if found == False:
+            raise Exception("The task you are looking for is no longer/never was in the task list") # if we can't find it we throw an error to let the user know
+
 
     def view_task_list(self): # returns all the lists and their current values
         return self.task_list, self.completed, self.all_tasks
