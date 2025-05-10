@@ -148,7 +148,29 @@ def tester():
 
     print("END")
 
+    print("TEST 9")
+    try:
+        a,b,c = to_do1.view_task_list()
+        print("Printing Active Tasks")
+        for item in a:
+            print(f"task {item.task_id}")
+            print(item.description)
+            print(f"due: {item.due_date}")
 
+        print("Printing Completed Tasks")
+        for item in b:
+            print(f"task {item.task_id}")
+            print(item.description)
+            print(f"due: {item.due_date}")
+
+        print("Printing All Tasks")
+        for item in c:
+            print(f"task {item.task_id}")
+            print(item.description)
+            print(f"due: {item.due_date}")
+    except Exception as e:
+        print(e)
+    print("END")
 
     print("-------------END------------------")
 

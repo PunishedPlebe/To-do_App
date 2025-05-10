@@ -8,7 +8,7 @@ def main():
         print("MENU")
         print("1: View Active Tasks")
         print("2: View Completed Tasks")
-        print("3 View All Tasks")
+        print("3: View All Tasks")
         print("4: Add a Task")
         print("5: Delete a Task")
         print("6: Mark a Task as Completed")
