@@ -11,8 +11,13 @@ class To_Do_List():
         if isinstance(task, Task) == False: # checks to make sure input is correct type
             raise Exception("You can only add Tasks to the to-do list") # throws error
         else:
-            self.task_list.append(task) # adds task to active tasklist
-            self.all_tasks.append(task) # adds task to complete tasklist
+            if task.completion_status == False: # If The Task objects completion_flag is marked to false
+                self.task_list.append(task) # adds task to active tasklist
+                self.all_tasks.append(task) # adds task to complete tasklist
+            else: # if the Task objects completion_Flag is true
+                self.completed.append(task) #adds task to To_Do_List.completed list
+                self.all_tasks.append(task) #adds task to To_Do_List.all)tasks list
+
     # need to add way to check both the tas_list and the completed list to make it's removed from all lists
     def del_task(self, task): # removes task object from active tasklist
         if isinstance(task, Task) == False: # checks to make sure input is correct type

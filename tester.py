@@ -55,6 +55,7 @@ def tester():
     task8 = Task(1,"this is a test task8", "01/11/1998")
     task9 = Task(2,"this is a test task9", "01/11/1997")
     task10 = Task(3,"this is a test task10", "01/11/1996")
+    task11 = Task(4,"this is a test task11","02/01/1000",True)
 
 
     print("TEST 1")
@@ -62,6 +63,8 @@ def tester():
     to_do1.add_task(task8)
     to_do1.add_task(task9)
     to_do1.add_task(task10)
+    to_do1.add_task(task11)
+
 
     print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
 
@@ -74,6 +77,7 @@ def tester():
     # Test 2 Standard Remove Tasks Test
     to_do1.del_task(task8)
     to_do1.del_task(task10)
+    #to_do1.del_task(task11)
 
     print(len(to_do1.task_list), len(to_do1.completed), len(to_do1.all_tasks)) # Prints the number of task objects in each attribute array
 
