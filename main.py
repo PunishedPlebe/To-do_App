@@ -1,5 +1,7 @@
 from to_do_list import *
 
+#I need to created a file reader to check for a user inputted file name to re-create an old to-do list
+
 def main():
     running = True #Bool representing the state of the program
     while running: #infinite loop to keep program running until user input changes running state

@@ -6,13 +6,14 @@ class To_Do_List():
         self.completed = [] # finished tasklist
         self.all_tasks =  [] # complete tasklist as in all of them
 
+    #need to do a check for the completion status flag to make sure To-Do lists are properly reconstucted from old data
     def add_task (self, task): # adds a task object to active and complete tasklists
         if isinstance(task, Task) == False: # checks to make sure input is correct type
             raise Exception("You can only add Tasks to the to-do list") # throws error
         else:
             self.task_list.append(task) # adds task to active tasklist
             self.all_tasks.append(task) # adds task to complete tasklist
-
+    # need to add way to check both the tas_list and the completed list to make it's removed from all lists
     def del_task(self, task): # removes task object from active tasklist
         if isinstance(task, Task) == False: # checks to make sure input is correct type
             raise Exception("You can only delete Tasks from the to-do list") #Throws error

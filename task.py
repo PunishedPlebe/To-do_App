@@ -1,5 +1,5 @@
 class Task():
-    def __init__ (self, task_id, description, due_date): #Creates a task object taking an int, str, str as input to generate the object
+    def __init__ (self, task_id, description, due_date, completion_status=False): #Creates a task object taking an int, str, str as input to generate the object
         if isinstance(task_id, int) == False: #checking to make sure task_id variable is correct type
             raise Exception("must be an int")
         else:
@@ -25,8 +25,7 @@ class Task():
                 else:
                     self.due_date = due_date # if we get this far without throwing an error the date is formated correctly and value is assinged to task attribute
 
-        self.completion_status = False #since this is a new task it can't have been completed yet; flag is statically set to False
-
+        self.completion_status = completion_status # we have a default value of false but you can pass a value here, it's to catch on re-construction
     def mark_as_complete(self):
         self.completion_status = True
 
