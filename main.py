@@ -38,6 +38,7 @@ def main():
                 comp = True # we set the bool value to True
             new_task = Task(id,descript,date,comp) # we create a new task object
             to_do.add_task(new_task) # we add that task object to the to_do object
+        file.close()
     #print("this is a test to make sure Task objects were created and added to to_do properly") #test line
     #print(f"Active: {to_do.task_list}") #test line
     #print(f"Completed: {to_do.completed}")#test line
@@ -65,9 +66,9 @@ def main():
                 print("Input must be a numerical value. Try again.") #prints error message prompting user for valid input
 
 
-        if user_input == 1:
-            a,b,c = to_do.view_task_list()
-            print("----------Active Tasklist-----------")
+        if user_input == 1: # if user selects view option
+            a,b,c = to_do.view_task_list() # a,b,c var are initalized with task_list,completed,and all_tasks respectively
+            print("----------Active Tasklist--------------")
             for item in a:
                 print(f"Task ID: {item.task_id} Description: {item.description} Due Date: {item.due_date}")
             print("----------Completed Tasklist-----------")
@@ -78,7 +79,52 @@ def main():
                 print(f"Task ID: {item.task_id} Description: {item.description} Due Date: {item.due_date} Completed: {item.completion_status}")
 
 
+        if user_input == 2: # if user selects add tasks
+            active = True # loop break var
+            while active: # infinite local loop, it will run til we decided we're done adding stuff
+                add_input1 = input("Please Enter a Description of the New Task: ") #description input
+                add_input2 = input("Please Enter a Due Date for the New Task: ")# due_date input
+                largest_id = None #finding the largest id value
+                id_array = [] #holder array for all the int value of all the task_id attributes
+                for task in to_do.all_tasks: #for every task object in the all_tasks attribute
+                    id_array.append(task.task_id) #add the task_id value to the holder array
+                try:
+                    largest_id = max(id_array) #largest_id = largest int value in the holder list
+                    new_id = largest_id + 1 #new_id = largest_id + 1 to ensure a unique ID number for each new task we try to add to to-do
+                except ValueError: # catch ValueError that is thrown if id_array is empty(like when we're working with a new To-Do List that has no previous entries)
+                    new_id = 1 # if we don't have anything in there we default to id 1
+                # print(largest_id)
+                try:
+                    new_task = Task(new_id,add_input1,add_input2) #we try to create a task object with the user input
+                    to_do.add_task(new_task)# we try to add the task to the to-do object
+                except Exception as e: # catch custom exceptions witten into classes to prevent bad data from being passed to obeject constructors
+                    print(e) # print the custom error corresponding to where the bad data was
+
+                checkout = True # loop break var
+                while checkout: # infinite local loop for continuation selection
+                    final_input = input("would you like to add another task? Y/N: ") #input for what to do
+                    if final_input == "N" or final_input == "n": # if input is N or n we trip the break variables to end add
+                        active = False
+                        checkout = False
+                    elif final_input == "Y" or final_input == "y": #if yes we just break the checkout loop and go about adding another task again
+                        checkout = False
+                    else:
+                        print("that is not a valid input! \n") #anything other than expected input throws an error message and checkout loops again prompting for input again
+
+
+
+
         if user_input == 5: #breaks running loop to close the program
+            #on close we write the contents of to-do to a csv file for potential future use
+            file = open(final_file_path, "w", newline="")
+            writer = csv.writer(file)
+            for task in to_do.all_tasks:
+                row = ([task.task_id,task.description,task.due_date,task.completion_status])
+                writer.writerow(row)
+            file.close()
+
+
+
             running = False
 
 
