@@ -64,20 +64,6 @@ def main():
             except ValueError: # catches Value error when anthing but a number is entered into the input field
                 print("Input must be a numerical value. Try again.") #prints error message prompting user for valid input
 
-        if user_input == 1:
-            a,b,c = to_do.view_task_list()
-            print("-----------Active Tasklist-------------")
-            for item in a:
-                print(f"Task ID: {item.task_id} Description: {item.description} Due Date: {item.due_date}")
-            print("-----------Completed Tasklist-------------")
-            for item in b:
-                print(f"Task ID: {item.task_id} Description: {item.description} Due Date: {item.due_date}")
-            print("-----------Active Tasklist-------------")
-            for item in c:
-                print(f"Task ID: {item.task_id} Description: {item.description} Due Date: {item.due_date} Completed: {item.completion_status}")
-
-
-
         if user_input == 5: #breaks running loop to close the program
             running = False
 
