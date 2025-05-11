@@ -16,7 +16,7 @@ def main():
     file_name = intro_input + ".csv" #name of file
     final_file_path = os.path.join(pgr_dir, file_path, file_name) # concatinates all the pieces of the dynamic file path to get the final path
     file = None # here we're declaring a file var which will hold a global instance of the file which makes up this to_do_list save file
-    to_do = To_Do_List()
+    to_do = To_Do_List() # initalizes global to_do var which will be our active to-do list for this run
 
     if os.path.exists(final_file_path) == False: # if final_file_path doesn't exits
         file = open(final_file_path, "x") # we create the file
@@ -44,27 +44,16 @@ def main():
     #print(f"All Tasks: {to_do.all_tasks}")#test line
 
 
-
-
-
-
-
-
-
-
-
     running = True #Bool representing the state of the program
     while running: #infinite loop to keep program running until user input changes running state
         print("Welcome to your To-Do List!")
         print("-----------------------------")
         print("MENU")
-        print("1: View Active Tasks")
-        print("2: View Completed Tasks")
-        print("3: View All Tasks")
-        print("4: Add a Task")
-        print("5: Delete a Task")
-        print("6: Mark a Task as Completed")
-        print("7: Exit")
+        print("1: View Tasks")
+        print("2: Add a Task")
+        print("3: Delete a Task")
+        print("4: Mark a Task as Completed")
+        print("5: Exit")
 
         input_loop = True #creates a bool representing the running state of the loop
         user_input = None # creates a local variable to be filled with user input
@@ -75,7 +64,7 @@ def main():
             except ValueError: # catches Value error when anthing but a number is entered into the input field
                 print("Input must be a numerical value. Try again.") #prints error message prompting user for valid input
 
-        if user_input == 7: #breaks running loop to close the program
+        if user_input == 5: #breaks running loop to close the program
             running = False
 
 
