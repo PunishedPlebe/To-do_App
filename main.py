@@ -2,6 +2,7 @@ from to_do_list import *
 from task import Task
 import csv
 import os
+import time
 
 #I need to created a file reader to check for a user inputted file name to re-create an old to-do list
 
@@ -110,6 +111,41 @@ def main():
                         checkout = False
                     else:
                         print("that is not a valid input! \n") #anything other than expected input throws an error message and checkout loops again prompting for input again
+
+        if user_input == 3: # if user selects delete tasks
+            active = True
+            while active:
+                id_input = input("Enter the Task ID of the Task you wish to delete: ") #prompt user for task ID number
+                if len(to_do.all_tasks) > 0:# if there are tasks to delete
+                    found = False # found flag
+                    for task in to_do.all_tasks: # for each task in all_tasks
+                        if task.task_id == int(id_input): #if the task ID number is equal to the user input
+                            try:
+                                to_do.del_task(task) #we try and delete the task from to-do
+                                found = True
+                            except Exception as e: #if we can't for some reason we catch with the custom exception
+                                    print(e) #we print the custom error
+                    if found == False: # if user input id number isn't in the list of tasks
+                        print("Can't delete a task that isn't there") # print error message
+                else: # if all_task is empty
+                    print("To-Do List is now empty.\n Exiting to Main Menu...") #we notify the user the list is empty and that we're force quiting
+                    time.sleep(2) #wait 2 seconds so user can actually read the message
+                    break # break out of while active loop ending function
+
+                checkout = True # loop break var
+                while checkout: # infinite local loop for continuation selection
+                    final_input = input("would you like to Delete another task? Y/N: ") #input for what to do
+                    if final_input == "N" or final_input == "n": # if input is N or n we trip the break variables to end add
+                        active = False
+                        checkout = False
+                    elif final_input == "Y" or final_input == "y": #if yes we just break the checkout loop and go about adding another task again
+                        checkout = False
+                    else:
+                        print("that is not a valid input! \n") #anything other than expected input throws an error message and checkout loops again prompting for input again
+
+        if user_input == 4:
+
+
 
 
 
