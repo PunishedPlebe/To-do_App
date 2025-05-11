@@ -115,8 +115,8 @@ def main():
         if user_input == 3: # if user selects delete tasks
             active = True
             while active:
-                id_input = input("Enter the Task ID of the Task you wish to delete: ") #prompt user for task ID number
                 if len(to_do.all_tasks) > 0:# if there are tasks to delete
+                    id_input = input("Enter the Task ID of the Task you wish to delete: ") #prompt user for task ID number
                     found = False # found flag
                     for task in to_do.all_tasks: # for each task in all_tasks
                         if task.task_id == int(id_input): #if the task ID number is equal to the user input
@@ -144,26 +144,52 @@ def main():
                         print("that is not a valid input! \n") #anything other than expected input throws an error message and checkout loops again prompting for input again
 
         if user_input == 4:
+            active = True
+            while active:
+                if len(to_do.task_list) > 0:# if there are active tasks
+                    id_input = input("Enter the Task ID of the Task you wish to mark completed: ") #prompt user for task ID number
+                    found = False # found flag
+                    for task in to_do.task_list: # for each task in all_tasks
+                        if task.task_id == int(id_input): #if the task ID number is equal to the user input
+                            try:
+                                to_do.mark_as_comp(task) #we try and delete the task from to-do
+                                found = True
+                            except Exception as e: #if we can't for some reason we catch with the custom exception
+                                    print(e) #we print the custom error
+                    if found == False: # if user input id number isn't in the list of tasks
+                        print("Can't complete a task that isn't there") # print error message
+                else: # if active_tasks is empty
+                    print("You have no more active tasks\n Exiting to Main Menu...") #we notify the user the list is empty and that we're force quiting
+                    time.sleep(2) #wait 2 seconds so user can actually read the message
+                    break # break out of while active loop ending function
 
-
-
+                checkout = True # loop break var
+                while checkout: # infinite local loop for continuation selection
+                    final_input = input("would you like to Complete another task? Y/N: ") #input for what to do
+                    if final_input == "N" or final_input == "n": # if input is N or n we trip the break variables to end add
+                        active = False
+                        checkout = False
+                    elif final_input == "Y" or final_input == "y": #if yes we just break the checkout loop and go about adding another task again
+                        checkout = False
+                    else:
+                        print("that is not a valid input! \n") #anything other than expected input throws an error message and checkout loops again prompting for input again
 
 
 
         if user_input == 5: #breaks running loop to close the program
             #on close we write the contents of to-do to a csv file for potential future use
-            file = open(final_file_path, "w", newline="")
-            writer = csv.writer(file)
-            for task in to_do.all_tasks:
-                row = ([task.task_id,task.description,task.due_date,task.completion_status])
-                writer.writerow(row)
-            file.close()
+            file = open(final_file_path, "w", newline="") #we open the file in write mode
+            writer = csv.writer(file) #we create a writer object that writes to file
+            for task in to_do.all_tasks: #for all task objects in out lisk holding all Task objects
+                row = ([task.task_id,task.description,task.due_date,task.completion_status]) # var which holds a single index list of all our attribute values
+                writer.writerow(row) #writer object writes all the attribute values in the list to a row of the file with .csv formatting
+            file.close() #we close the file cause we're done with it
 
-
+            # if the file we're working out of is empty we delete the file
+            if os.path.getsize(final_file_path) == 0: #if the size of final_file_path = 0
+                os.remove(final_file_path) # we delete the file where it sits
 
             running = False
-
-
 
 
 main()
